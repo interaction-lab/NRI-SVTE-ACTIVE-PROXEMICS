@@ -85,6 +85,7 @@ namespace NRISVTE {
         #endregion
 
         #region private
+        float fakeRoomSizeFactor = 3f; // in meters, doubled to do one side
         void GeneratePolyline(int score) {
             polyLineJSONmsg.sampleType = InteractionManager_.CurrentSampleType.ToString();
             polyLineJSONmsg.identifier = string.Join("_", UserIDManager.PlayerId, UserIDManager.DeviceId, Time.time.ToString());
@@ -106,6 +107,35 @@ namespace NRISVTE {
                         {"orientation", angle}
                     }
                 };
+            polyLineJSONmsg.fake_room = new List<List<float>>() {
+                    new List<float>() {
+                        // left bottom
+                        fakeRoomSizeFactor * -1,
+                        fakeRoomSizeFactor * -1
+                    },
+                    new List<float>() {
+                        // right bottom
+                        fakeRoomSizeFactor,
+                        fakeRoomSizeFactor * -1
+                    },
+                    new List<float>() {
+                        // right top
+                        fakeRoomSizeFactor,
+                        fakeRoomSizeFactor
+                    },
+                    new List<float>() {
+                        // left top
+                        fakeRoomSizeFactor * -1,
+                        fakeRoomSizeFactor
+                    }
+                };
+            // convert fake room to kuri cords
+            foreach(List<float> fakeRoom in polyLineJSONmsg.fake_room) {
+                fakeRoom[0] += KuriT.Position.x;
+                fakeRoom[1] += KuriT.Position.z;
+                fakeRoom[0] *= 100; // put in cm
+                fakeRoom[1] *= 100;
+            }
             Debug.Log("SendPolyline: " + polyLineJSONmsg.ToString());
             connectionManager.SendToServer(Newtonsoft.Json.JsonConvert.SerializeObject(polyLineJSONmsg));
         }

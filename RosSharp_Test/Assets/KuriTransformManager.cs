@@ -48,6 +48,14 @@ namespace NRISVTE {
         #endregion
 
         #region unity
+        private void Update() {
+            // place kuri on the ground using GroundYCord
+            if (GroundYCord != null) {
+                Vector3 groundPosition = Position;
+                groundPosition.y = GroundYCord;
+                Position = groundPosition;
+            }
+        }
         #endregion
 
         #region public
