@@ -131,5 +131,6 @@ Recordings/
 # Bigger assets free to download from unity store
 #Assets/Kitchen*
 Assets/PropsToHold/*
-!Assets/Resources/ObjectToPickUpFolder/*
+
 Assets/Resources/*
+!Assets/Resources/ObjectToPickUpFolder
