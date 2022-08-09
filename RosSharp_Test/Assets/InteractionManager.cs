@@ -19,7 +19,7 @@ namespace NRISVTE {
             random
         }
 
-        float interactionLengthInMinutes = 0.5f;
+        float interactionLengthInMinutes = 20f;
         public SampleTypes CurrentSampleType;
         public static string sampleTypeLogColumn = "sampleType";
         #endregion
