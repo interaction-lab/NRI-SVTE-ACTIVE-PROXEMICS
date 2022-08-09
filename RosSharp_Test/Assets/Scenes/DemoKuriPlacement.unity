@@ -9093,7 +9093,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: pizza
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4695115338499694039, guid: ddfa315221cd51d43a26448bea82567e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ddfa315221cd51d43a26448bea82567e, type: 3}
 --- !u!4 &927277734 stripped
 Transform:
@@ -9772,7 +9773,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7212317128375551664, guid: 07941bae386e1594fb7e061ed7f25195, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 07941bae386e1594fb7e061ed7f25195, type: 3}
 --- !u!4 &1033906458 stripped
 Transform:
