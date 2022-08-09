@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RosSharp.RosBridgeClient
-{
-    public static class ColorUtility : object
-    {
+namespace RosSharp.RosBridgeClient {
+    public static class ColorUtility : object {
         private static string[] indexcolors = new string[]{
         "#AFAF00", "#32C8C8", "#FF34FF", "#FF4A46", "#008941", "#006FA6", "#A30059",
         "#FFDBE5", "#7A4900", "#0000A6", "#63FFAC", "#B79762", "#004D43", "#8FB0FF", "#997D87",
@@ -26,19 +24,16 @@ namespace RosSharp.RosBridgeClient
         "#C895C5", "#320033", "#FF6832", "#66E1D3", "#CFCDAC", "#D0AC94", "#7ED379", "#012C58",  "#000000"
         };
 
-        public static Color[] GetDifferentColors(int n)
-        {
+        public static Color[] GetDifferentColors(int n) {
             Color[] colors = new Color[n];
-            for (int i = 0; i < n; i++)
-            {
+            for (int i = 0; i < n; i++) {
                 colors[i] = HexToRGB(indexcolors[i]);
-              
+
             }
             return colors;
         }
 
-        public static string RGBToHex(Color color)
-        {
+        public static string RGBToHex(Color color) {
             int r = (int)(color.r);
             int g = (int)(color.g);
             int b = (int)(color.b);
@@ -57,8 +52,7 @@ namespace RosSharp.RosBridgeClient
         }
 
 
-        public static Color HexToRGB(string hexString)
-        {
+        public static Color HexToRGB(string hexString) {
             //replace # occurences
             if (hexString.IndexOf('#') != -1)
                 hexString = hexString.Replace("#", "");
@@ -68,8 +62,9 @@ namespace RosSharp.RosBridgeClient
             r = int.Parse(hexString.Substring(0, 2), System.Globalization.NumberStyles.AllowHexSpecifier);
             g = int.Parse(hexString.Substring(2, 2), System.Globalization.NumberStyles.AllowHexSpecifier);
             b = int.Parse(hexString.Substring(4, 2), System.Globalization.NumberStyles.AllowHexSpecifier);
-            System.Drawing.Color color = System.Drawing.Color.FromArgb(r, g, b);
-            return new Color(color.R,color.G, color.B);
+            //System.Drawing.Color color = System.Drawing.Color.FromArgb(r, g, b);
+            return new Color(r / 255f, g / 255f, b / 255f);
+            //return new Color(color.R, color.G, color.B);
         }
     }
 }

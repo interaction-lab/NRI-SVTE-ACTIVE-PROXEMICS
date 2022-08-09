@@ -29,7 +29,7 @@ namespace NRISVTE {
             }
         }
         UnityEvent KuriEnterViewPort = new UnityEvent();
-        float center3Up = 0.15f;
+        float center3Up = 0.1f;
         bool wasOutOfView = false;
         KuriBTEventRouter _kuriBTEventRouter;
         KuriBTEventRouter kuriBTEventRouter {

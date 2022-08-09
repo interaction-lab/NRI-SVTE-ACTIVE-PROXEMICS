@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
-using WebSocketSharp;
+using NativeWebSocket;
 
 namespace NRISVTE {
     public class ConnectionManager : Singleton<ConnectionManager> {
@@ -66,6 +65,11 @@ namespace NRISVTE {
             KuriManager.instance.GetComponent<KuriBTEventRouter>().AddEvent(EventNames.ReceivedMessage, ReceivedMessageEvent);
             KuriManager.instance.GetComponent<KuriBTEventRouter>().AddEvent(EventNames.OnServerConnected, OnServerConnected);
         }
+        void Update() {
+#if !UNITY_WEBGL || UNITY_EDITOR
+            ws?.DispatchMessageQueue();
+#endif
+        }
         #endregion
 
         #region public
@@ -73,12 +77,12 @@ namespace NRISVTE {
             if (IsConnected) {
                 return;
             }
-            StartCoroutine(ConnectCoroutine());
+            ConnectCoroutine();
         }
         public void SendToServer(string message) {
             loggingManager.UpdateLogColumn(msgSendColName, message);
             if (IsConnected) {
-                ws.Send(message);
+                ws.SendText(message);
             }
             else {
                 Debug.Log("Not connected to server, attempted to send: " + message);
@@ -89,22 +93,26 @@ namespace NRISVTE {
         #endregion
 
         #region private
-        IEnumerator ConnectCoroutine() {
+        async void ConnectCoroutine() {
             ws = new WebSocket("ws://" +
                 HostInputFieldManager.instance.HostNumber +
                 ":" +
                 PortInputFieldManager.instance.PortNumber);
-            ws.OnOpen += (sender, e) => {
+
+            ws.OnOpen += () => {
                 Debug.Log("Connected to server");
                 internalIsConnected = true;
                 OnServerConnected.Invoke();
             };
-            ws.OnMessage += (sender, e) => {
+            ws.OnMessage += (bytes) => {
+                var mes = System.Text.Encoding.UTF8.GetString(bytes);
+                Debug.Log("Received message: " + mes);
                 try {
                     UnityMainThread.wkr.AddJob(() => {
-                        loggingManager.UpdateLogColumn(msgRecvColName, e.Data.ToString());
-                        DebugTextM.SetDebugText("Received: " + e.Data);
-                        LatestMsg = e.Data;
+                        var message = System.Text.Encoding.UTF8.GetString(bytes);
+                        loggingManager.UpdateLogColumn(msgRecvColName, message);
+                        DebugTextM.SetDebugText("Received: " + message);
+                        LatestMsg = message;
                         lastMsgTime = Time.time;
                         ReceivedMessageEvent.Invoke();
                     });
@@ -113,18 +121,18 @@ namespace NRISVTE {
                     Debug.Log(ex.Message);
                 }
             };
-            ws.OnError += (sender, e) => {
+            ws.OnError += (bytes) => {
                 numErrors++;
             };
-            ws.OnClose += (sender, e) => {
-                Debug.Log("Closed with code: " + e.Code);
-                closeCode = e.Code.ToString();
+            ws.OnClose += (bytes) => {
+                Debug.Log("Closed with code:");
+                // closeCode = message;
             };
-            ws.ConnectAsync();
-            //ws.Connect();
-            while (!IsConnected && numErrors < 3) {
-                yield return null;
-            }
+            //ws.ConnectAsync();
+            await ws.Connect();
+        }
+        private async void OnApplicationQuit() {
+            await ws.Close();
         }
         #endregion
     }
