@@ -44,7 +44,7 @@ namespace NRISVTE {
                 return new Vector2(Forward.x, Forward.z);
             }
         }
-        public virtual Vector3 Up{
+        public virtual Vector3 Up {
             get {
                 return OriginT.up;
             }
@@ -60,7 +60,7 @@ namespace NRISVTE {
             }
         }
 
-        public virtual Vector3 Left{
+        public virtual Vector3 Left {
             get {
                 return -OriginT.right;
             }
@@ -74,14 +74,18 @@ namespace NRISVTE {
             RaycastHit hit;
             // make raycast only hit Spatial Awareness Layers
             int layerMask = 1 << LayerMask.NameToLayer("Spatial Awareness");
-
+            float lastGroundy = GroundYCord;
             if (Physics.Raycast(OriginT.position + (Vector3.up * 0.1f), Vector3.down, out hit, 10, layerMask)) {
-                GroundYCord = hit.point.y;
+                if (hit.point.y < lastGroundy) {
+                    GroundYCord = hit.point.y;
+                }
             }
             else {
                 // raycast up to find ground
                 if (Physics.Raycast(OriginT.position - (Vector3.up * 0.1f), Vector3.up, out hit, 10, layerMask)) {
-                    GroundYCord = hit.point.y;
+                    if (hit.point.y < lastGroundy) {
+                        GroundYCord = hit.point.y;
+                    }
                 }
             }
         }
