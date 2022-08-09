@@ -333,6 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 78388086}
   - component: {fileID: 78388087}
+  - component: {fileID: 78388088}
   m_Layer: 5
   m_Name: ParticipantNumberSlider
   m_TagString: Untagged
@@ -415,6 +416,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &78388088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78388085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8803677eb805b44a29ddd701caf7ab72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &90714093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2703,7 +2716,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &676231736
 GameObject:
   m_ObjectHideFlags: 0
@@ -10760,10 +10773,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Participant Num ^
+  m_text: Participant # ^ NOT SET
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a2fec41a7b8090438e185f0c1a44c06, type: 2}
+  m_sharedMaterial: {fileID: -470332149923209927, guid: 2a2fec41a7b8090438e185f0c1a44c06, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12990,8 +13003,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Connect
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2a2fec41a7b8090438e185f0c1a44c06, type: 2}
+  m_sharedMaterial: {fileID: -470332149923209927, guid: 2a2fec41a7b8090438e185f0c1a44c06, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13021,7 +13034,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

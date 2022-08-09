@@ -3,31 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-namespace NRISVTE
-{
-    public class MassiWantsPointsManager : Singleton<MassiWantsPointsManager>
-    {
+namespace NRISVTE {
+    public class MassiWantsPointsManager : Singleton<MassiWantsPointsManager> {
         #region members
         // get the connection manager
         ConnectionManager _connectionManager;
-        ConnectionManager connectionManager
-        {
-            get
-            {
-                if (_connectionManager == null)
-                {
+        ConnectionManager connectionManager {
+            get {
+                if (_connectionManager == null) {
                     _connectionManager = ConnectionManager.instance;
                 }
                 return _connectionManager;
             }
         }
         KuriTransformManager kuriTransformManager;
-        KuriTransformManager KuriT
-        {
-            get
-            {
-                if (kuriTransformManager == null)
-                {
+        KuriTransformManager KuriT {
+            get {
+                if (kuriTransformManager == null) {
                     kuriTransformManager = KuriManager.instance.GetComponent<KuriTransformManager>();
                 }
                 return kuriTransformManager;
@@ -35,28 +27,24 @@ namespace NRISVTE
         }
         #endregion
         #region unity
-        private void Awake()
-        {
+        private void Awake() {
             connectionManager.ReceivedMessageEvent.AddListener(OnReceivedMessage);
         }
         #endregion
         #region public
         #endregion
         #region private
-        void OnReceivedMessage()
-        {
+        void OnReceivedMessage() {
             // get the message
             string msg = connectionManager.LatestMsg;
-            if (!msg.Contains("point_id"))
-            {
+            if (!msg.Contains("point_id")) {
                 return;
             }
             // parse the message
             ServerDebugPointsResponseJSON serverDebugPointsResponseJSON = JsonUtility.FromJson<ServerDebugPointsResponseJSON>(msg);
             // get the point id
             string point_id = serverDebugPointsResponseJSON.point_id;
-            for (int i = 0; i < serverDebugPointsResponseJSON.points.Count; ++i)
-            {
+            for (int i = 0; i < serverDebugPointsResponseJSON.points.Count; ++i) {
                 float x = serverDebugPointsResponseJSON.points[i][0] / 100f + KuriT.Position.x;
                 float y = KuriT.GroundYCord;
                 float z = serverDebugPointsResponseJSON.points[i][1] / 100f + KuriT.Position.z;

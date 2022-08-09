@@ -101,7 +101,7 @@ namespace NRISVTE {
             float angle = Vector2.SignedAngle(userPosRelKuri, kuriForward2D);
             polyLineJSONmsg.humans = new List<Dictionary<string, float>>() {
                     new Dictionary<string, float>() {
-                        {"id", 1},
+                        {"id", UserIDManager.participantNumber},
                         {"xPos", userPosRelKuri.x * 100},
                         {"yPos", userPosRelKuri.y * 100},
                         {"orientation", angle}

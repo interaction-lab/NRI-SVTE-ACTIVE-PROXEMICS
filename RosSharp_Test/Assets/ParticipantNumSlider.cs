@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace NRISVTE {
     public class ParticipantNumSlider : MonoBehaviour {
@@ -13,6 +14,15 @@ namespace NRISVTE {
                     _slider = GetComponent<Slider>();
                 }
                 return _slider;
+            }
+        }
+        TextMeshProUGUI _textMeshProUGUI;
+        TextMeshProUGUI textMeshProUGUI {
+            get {
+                if (_textMeshProUGUI == null) {
+                    _textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
+                }
+                return _textMeshProUGUI;
             }
         }
         #endregion
@@ -28,7 +38,8 @@ namespace NRISVTE {
         #endregion
         #region private
         void OnValueChanged(float value) {
-            UserIDManager.participantNumber = Mathf.Round(value).ToString();
+            UserIDManager.participantNumber = (int)Mathf.Round(value);
+            textMeshProUGUI.text = "Participant#" + UserIDManager.participantNumber.ToString();
         }
         #endregion
     }
