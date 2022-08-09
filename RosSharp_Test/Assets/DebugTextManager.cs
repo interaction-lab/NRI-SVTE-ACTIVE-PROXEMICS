@@ -25,7 +25,7 @@ namespace NRISVTE {
 
 		#region public
 		public void SetDebugText(string text) {
-			debugText.text = text;
+			//debugText.text = text;
 		}
 		#endregion
 
