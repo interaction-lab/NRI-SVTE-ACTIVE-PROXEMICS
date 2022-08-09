@@ -21,7 +21,6 @@ namespace NRISVTE {
             if (events.ContainsKey(eventName)) {
                 return events[eventName];
             }
-            Debug.LogError("Event key" + eventName + " not found");
             return null;
         }
     }

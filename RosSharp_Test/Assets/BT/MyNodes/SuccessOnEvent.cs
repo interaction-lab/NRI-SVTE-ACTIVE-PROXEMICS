@@ -25,7 +25,7 @@ namespace NRISVTE {
             if (evt == null) {
                 evt = eventRouter.GetEvent(eventName);
                 if (evt == null) {
-                    Debug.LogError("Event " + eventName + " not found, double check that you added the event correctly");
+                    //Debug.LogError("Event " + eventName + " not found, double check that you added the event correctly");
                 }
                 else {
                     evt.AddListener(OnEvent);

@@ -26,7 +26,7 @@ namespace NRISVTE {
         }
         #endregion
         #region unity
-        void OnEnable() {
+        void Awake() {
             kuriBTEventRouter.AddEvent(EventNames.StartButtonPressed, button.onClick);
             // check if participant number is valid (between 0-40)
             // subscriber to connection manager's OnServerConnected event
@@ -38,7 +38,7 @@ namespace NRISVTE {
             }
             ConnectionManager.instance.OnServerConnected.AddListener(OnServerConnected);
         }
-        void OnDisable() {
+        private void OnDestroy() {
             ConnectionManager.instance.OnServerConnected.RemoveListener(OnServerConnected);
         }
         #endregion
