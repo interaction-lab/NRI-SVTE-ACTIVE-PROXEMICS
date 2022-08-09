@@ -10,7 +10,7 @@ namespace NRISVTE {
         void Update() {
             if (Input.GetKeyDown(KeyCode.Alpha0)) {
                 // send server msg
-                ServerJSONManager.instance.SendLabeledPoint(1);
+                ServerJSONManager.instance.SendLabeledPoint(100);
             }
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 // send server msg

@@ -20,7 +20,7 @@ namespace NRISVTE {
         #endregion
         #region unity
         private void FixedUpdate() {
-            CalcPolylineInKuriCords();    
+            CalcPolylineInKuriCords();
         }
         #endregion
         #region public
@@ -32,7 +32,7 @@ namespace NRISVTE {
         }
         #endregion
         #region private
-        private void PopulatePolyline(){
+        private void PopulatePolyline() {
             // get navmesh obstacle
             NavMeshObstacle obstacle = GetComponent<NavMeshObstacle>();
             // get the shape of the obstacle
@@ -50,14 +50,24 @@ namespace NRISVTE {
             depth *= lossyScale.z;
 
 
+
             Vector3 objectPosition = transform.position;
             Vector3 obstacleBoxPosition = objectPosition + obstacle.center;
 
+            float x = obstacleBoxPosition.x;
+            float z = obstacleBoxPosition.z;
+            if(Mathf.Abs(transform.localRotation.eulerAngles.y) > 0.1f) {
+                // flip width and depth
+                float temp = width;
+                width = depth;
+                depth = temp;
+            }
+
             // get the corners of the obstacle
-            Polyline.Add(new List<float>(){obstacleBoxPosition.x - width / 2f, obstacleBoxPosition.z - depth / 2f});
-            Polyline.Add(new List<float>(){obstacleBoxPosition.x - width / 2f, obstacleBoxPosition.z + depth / 2f});
-            Polyline.Add(new List<float>(){obstacleBoxPosition.x + width / 2f, obstacleBoxPosition.z + depth / 2f});
-            Polyline.Add(new List<float>(){obstacleBoxPosition.x + width / 2f, obstacleBoxPosition.z - depth / 2f});
+            Polyline.Add(new List<float>() { x - width / 2f, z - depth / 2f });
+            Polyline.Add(new List<float>() { x - width / 2f, z + depth / 2f });
+            Polyline.Add(new List<float>() { x + width / 2f, z + depth / 2f });
+            Polyline.Add(new List<float>() { x + width / 2f, z - depth / 2f });
 
             // need to subtract off KuriT.Position to get the correct position in KuriCords
             for (int i = 0; i < 4; ++i) {

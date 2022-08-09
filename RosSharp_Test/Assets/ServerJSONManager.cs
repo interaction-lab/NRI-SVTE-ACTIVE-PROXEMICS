@@ -139,8 +139,8 @@ namespace NRISVTE {
                 };
             // convert fake room to kuri cords
             foreach(List<float> fakeRoom in polyLineJSONmsg.fake_room) {
-                fakeRoom[0] += KuriT.Position.x;
-                fakeRoom[1] += KuriT.Position.z;
+                fakeRoom[0] -= KuriT.Position.x;
+                fakeRoom[1] -= KuriT.Position.z;
                 fakeRoom[0] *= 100; // put in cm
                 fakeRoom[1] *= 100;
             }
