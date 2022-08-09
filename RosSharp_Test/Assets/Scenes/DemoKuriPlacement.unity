@@ -16025,7 +16025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048757889}
   m_Layer: 0
-  m_Name: notepad
+  m_Name: notebook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
