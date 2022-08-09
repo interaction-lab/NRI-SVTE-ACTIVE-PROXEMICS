@@ -82,12 +82,20 @@ namespace NRISVTE {
             polyLineJSONmsg.requestType = "sample";
             GeneratePolyline(0);
         }
+
+        public void RequestPhysicalVizPoint(){
+            polyLineJSONmsg.requestType = "sample";
+            GeneratePolyline(0, true);
+        }
         #endregion
 
         #region private
         float fakeRoomSizeFactor = 3f; // in meters, doubled to do one side
-        void GeneratePolyline(int score) {
+        void GeneratePolyline(int score, bool samplePhysicalViz = false) {
             polyLineJSONmsg.sampleType = InteractionManager_.CurrentSampleType.ToString();
+            if(samplePhysicalViz){
+                polyLineJSONmsg.sampleType = "setup";
+            }
             polyLineJSONmsg.identifier = string.Join("_", UserIDManager.PlayerId, UserIDManager.DeviceId, Time.time.ToString());
             polyLineJSONmsg.room = FakeWallRoomPolylineEstimator_.GetWallPolyLines();
             polyLineJSONmsg.robot = new Dictionary<string, int>() {
