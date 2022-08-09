@@ -208,6 +208,28 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   child: {fileID: 7818245969041346504}
+--- !u!114 &-6625394934139167526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484819166e2414323932a3df6d078eaf, type: 3}
+  m_Name: SuccessOnStartButtonPressed
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 095bb3d22c21242ef8f5a89f9b533c5d
+  position: {x: 0, y: 0}
+  blackboard:
+    goalPosition: {x: 0, y: 0, z: 0}
+    goalRotation: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  eventName: 
 --- !u!114 &-5844706176581188112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,7 +512,7 @@ MonoBehaviour:
     goalRotation: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  child: {fileID: -1299179021854398045}
+  child: {fileID: 0}
   restartOnSuccess: 0
   restartOnFailure: 1
 --- !u!114 &-1720312018255382335
@@ -555,27 +577,6 @@ MonoBehaviour:
   started: 0
   guid: d75475e32d6f64c7ba64ba420ced672c
   position: {x: -365, y: 1130}
-  blackboard:
-    goalPosition: {x: 0, y: 0, z: 0}
-    goalRotation: {x: 0, y: 0, z: 0}
-  description: 
-  drawGizmos: 0
---- !u!114 &-1299179021854398045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d3561f15b17941fb84c6a5034954d95, type: 3}
-  m_Name: IsConnectedToServer
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: a5b7860ead866485282047f84a7207c2
-  position: {x: -629, y: 81}
   blackboard:
     goalPosition: {x: 0, y: 0, z: 0}
     goalRotation: {x: 0, y: 0, z: 0}
@@ -775,8 +776,8 @@ MonoBehaviour:
   - {fileID: -3256404674485202178}
   - {fileID: -8718569489807617342}
   - {fileID: -1809070569985643634}
-  - {fileID: -1299179021854398045}
   - {fileID: -5344528818093382679}
+  - {fileID: -6625394934139167526}
   blackboard:
     goalPosition: {x: 0, y: 0, z: 0}
     goalRotation: {x: 0, y: 0, z: 0}
