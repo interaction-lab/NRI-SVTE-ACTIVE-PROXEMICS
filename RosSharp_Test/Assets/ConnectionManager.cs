@@ -111,7 +111,7 @@ namespace NRISVTE {
                     UnityMainThread.wkr.AddJob(() => {
                         var message = System.Text.Encoding.UTF8.GetString(bytes);
                         loggingManager.UpdateLogColumn(msgRecvColName, message);
-                        DebugTextM.SetDebugText("Received: " + message);
+                        // DebugTextM.SetDebugText("Received: " + message);
                         LatestMsg = message;
                         lastMsgTime = Time.time;
                         ReceivedMessageEvent.Invoke();

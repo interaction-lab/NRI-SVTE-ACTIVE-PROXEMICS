@@ -19,7 +19,7 @@ namespace NRISVTE {
 
 		#region unity
 		void Awake(){
-			SetDebugText("Awake");
+			//SetDebugText("Awake");
 		}
 		#endregion
 
