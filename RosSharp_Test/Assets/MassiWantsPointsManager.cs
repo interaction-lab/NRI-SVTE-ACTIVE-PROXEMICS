@@ -37,11 +37,13 @@ namespace NRISVTE {
         void OnReceivedMessage() {
             // get the message
             string msg = connectionManager.LatestMsg;
+            Debug.Log("MassiWantsPointsManager: OnReceivedMessage: " + msg);
+            Debug.Log(msg.Contains("point_id"));
             if (!msg.Contains("point_id")) {
                 return;
             }
             // parse the message
-            ServerDebugPointsResponseJSON serverDebugPointsResponseJSON = JsonUtility.FromJson<ServerDebugPointsResponseJSON>(msg);
+            ServerDebugPointsResponseJSON serverDebugPointsResponseJSON = Newtonsoft.Json.JsonConvert.DeserializeObject<ServerDebugPointsResponseJSON>(msg);
             // get the point id
             string point_id = serverDebugPointsResponseJSON.point_id;
             for (int i = 0; i < serverDebugPointsResponseJSON.points.Count; ++i) {
@@ -50,7 +52,7 @@ namespace NRISVTE {
                 float z = serverDebugPointsResponseJSON.points[i][1] / 100f + KuriT.Position.z;
                 // create a sphere at the point
                 // load massi_point prefab from Resources folder
-                GameObject point = Instantiate(Resources.Load<GameObject>("massi_point"));
+                GameObject point = Instantiate(Resources.Load<GameObject>("ObjectToPickUpFolder/massi_point"));
                 // choose random color for the point
                 Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
                 // set the color of the point
