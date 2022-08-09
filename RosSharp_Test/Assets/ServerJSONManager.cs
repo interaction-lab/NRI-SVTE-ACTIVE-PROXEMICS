@@ -136,6 +136,7 @@ namespace NRISVTE {
                 fakeRoom[0] *= 100; // put in cm
                 fakeRoom[1] *= 100;
             }
+            polyLineJSONmsg.room = polyLineJSONmsg.fake_room;
             Debug.Log("SendPolyline: " + polyLineJSONmsg.ToString());
             connectionManager.SendToServer(Newtonsoft.Json.JsonConvert.SerializeObject(polyLineJSONmsg));
         }

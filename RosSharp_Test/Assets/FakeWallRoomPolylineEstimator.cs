@@ -211,19 +211,19 @@ namespace NRISVTE {
                 planeCenters.Add(planeCenter);
                 planeNormals.Add(perpendicularNormal);
                 // create sphere primitives for each plane center and normal
-                GameObject planeCenterSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                planeCenterSphere.transform.position = planeCenter;
-                planeCenterSphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                planeCenterSphere.transform.rotation = Quaternion.LookRotation(perpendicularNormal);
-                planeCenterSphere.GetComponent<Renderer>().material.color = Color.red;
-                planeCenterSphere.name = "PlaneCenterSphere";
-                // create cute arrow for each plane normal
-                GameObject planeNormalArrow = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                planeNormalArrow.transform.position = planeCenter;
-                planeNormalArrow.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                planeNormalArrow.transform.rotation = Quaternion.LookRotation(perpendicularNormal);
-                planeNormalArrow.GetComponent<Renderer>().material.color = Color.red;
-                planeNormalArrow.name = "PlaneNormalArrow";
+                // GameObject planeCenterSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                // planeCenterSphere.transform.position = planeCenter;
+                // planeCenterSphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                // planeCenterSphere.transform.rotation = Quaternion.LookRotation(perpendicularNormal);
+                // planeCenterSphere.GetComponent<Renderer>().material.color = Color.red;
+                // planeCenterSphere.name = "PlaneCenterSphere";
+                // // create cute arrow for each plane normal
+                // GameObject planeNormalArrow = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                // planeNormalArrow.transform.position = planeCenter;
+                // planeNormalArrow.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                // planeNormalArrow.transform.rotation = Quaternion.LookRotation(perpendicularNormal);
+                // planeNormalArrow.GetComponent<Renderer>().material.color = Color.red;
+                // planeNormalArrow.name = "PlaneNormalArrow";
             }
         }
 
