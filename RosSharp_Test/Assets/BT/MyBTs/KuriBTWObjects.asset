@@ -223,7 +223,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 095bb3d22c21242ef8f5a89f9b533c5d
-  position: {x: 0, y: 0}
+  position: {x: -655.0475, y: 71.00003}
   blackboard:
     goalPosition: {x: 0, y: 0, z: 0}
     goalRotation: {x: 0, y: 0, z: 0}
@@ -512,7 +512,7 @@ MonoBehaviour:
     goalRotation: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  child: {fileID: 0}
+  child: {fileID: -6625394934139167526}
   restartOnSuccess: 0
   restartOnFailure: 1
 --- !u!114 &-1720312018255382335
