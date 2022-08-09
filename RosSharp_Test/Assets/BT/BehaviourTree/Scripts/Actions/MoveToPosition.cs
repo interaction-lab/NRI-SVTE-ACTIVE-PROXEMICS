@@ -10,6 +10,15 @@ public class MoveToPosition : ActionNode {
     public bool updateRotation = true;
     public float acceleration = 40.0f;
     public float tolerance = 1.0f;
+    KuriDriveAudioManager audioManager;
+    public KuriDriveAudioManager AudioManager {
+        get {
+            if (audioManager == null) {
+                audioManager = KuriDriveAudioManager.instance;
+            }
+            return audioManager;
+        }
+    }
 
     KuriTransformManager kuriTransformManager;
 
@@ -21,10 +30,12 @@ public class MoveToPosition : ActionNode {
         context.agent.acceleration = acceleration;
         kuriTransformManager = KuriManager.instance.GetComponent<KuriTransformManager>();
         context.agent.isStopped = false;
+        AudioManager.Play();
     }
 
     protected override void OnStop() {
         context.agent.isStopped = true;
+        AudioManager.Stop();
     }
 
     protected override State OnUpdate() {
