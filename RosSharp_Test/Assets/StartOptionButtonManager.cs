@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace NRISVTE {
-    public class StartOptionButtonManager : MonoBehaviour {
+    public class StartOptionButtonManager : Singleton<StartOptionButtonManager> {
         #region members
         Button _button;
         public Button button {
@@ -37,6 +37,7 @@ namespace NRISVTE {
                 button.interactable = false;
             }
             ConnectionManager.instance.OnServerConnected.AddListener(OnServerConnected);
+            button.onClick.AddListener(OnClick);
         }
         private void OnDestroy() {
             ConnectionManager.instance.OnServerConnected.RemoveListener(OnServerConnected);
@@ -47,6 +48,11 @@ namespace NRISVTE {
         #region private
         private void OnServerConnected() {
             button.interactable = true;
+        }
+        private void OnClick() {
+            InteractionManager.instance.StartInteraction();
+            // turn off options button
+            OptionsButtonManager.instance.button.interactable = false;
         }
         #endregion
     }

@@ -19,22 +19,30 @@ namespace NRISVTE {
             random
         }
 
-        float interactionLengthInMinutes = 5f;
+        float interactionLengthInMinutes = 0.5f;
         public SampleTypes CurrentSampleType;
         public static string sampleTypeLogColumn = "sampleType";
         #endregion
         #region unity
         private void Start() {
-            loggingManager.AddLogColumn(sampleTypeLogColumn, CurrentSampleType.ToString());
-            // this is where we can randomize or set somehow the way we want to sample the data
-            StartCoroutine(SwitchSampleTypeAtTime());
+            loggingManager.AddLogColumn(sampleTypeLogColumn, "");
+            CurrentSampleType = SampleTypes.random; // toggle default is off
         }
         #endregion
         #region public
+
         #endregion
         #region private
+        public void StartInteraction() {
+            loggingManager.AddLogColumn(sampleTypeLogColumn, CurrentSampleType.ToString());
+            StartCoroutine(SwitchSampleTypeAtTime());
+        }
         IEnumerator SwitchSampleTypeAtTime() {
-            yield return new WaitForSeconds(interactionLengthInMinutes / 2);
+            Debug.Log("start interaction");
+            float conditionTime = interactionLengthInMinutes * 60f / 2.0f;
+            WaitForSecondsRealtime conditionWait = new WaitForSecondsRealtime(conditionTime);
+            yield return conditionWait;
+            Debug.Log("switch conditions");
             if (CurrentSampleType == SampleTypes.active) {
                 CurrentSampleType = SampleTypes.random;
             }
@@ -42,6 +50,9 @@ namespace NRISVTE {
                 CurrentSampleType = SampleTypes.active;
             }
             loggingManager.UpdateLogColumn(sampleTypeLogColumn, CurrentSampleType.ToString());
+            yield return conditionWait;
+            Debug.Log("done");
+            Application.Quit();
         }
         #endregion
     }
