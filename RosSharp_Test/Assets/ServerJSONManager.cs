@@ -74,7 +74,7 @@ namespace NRISVTE {
         #region public
         public void SendLabeledPoint(int score) {
             polyLineJSONmsg.requestType = "label";
-            GeneratePolyline(score);
+            GeneratePolyline(0);
 
         }
 
@@ -83,7 +83,7 @@ namespace NRISVTE {
             GeneratePolyline(0);
         }
 
-        public void RequestPhysicalVizPoint(){
+        public void RequestPhysicalVizPoint() {
             polyLineJSONmsg.requestType = "sample";
             GeneratePolyline(0, true);
         }
@@ -93,7 +93,7 @@ namespace NRISVTE {
         float fakeRoomSizeFactor = 3f; // in meters, doubled to do one side
         void GeneratePolyline(int score, bool samplePhysicalViz = false) {
             polyLineJSONmsg.sampleType = InteractionManager_.CurrentSampleType.ToString();
-            if(samplePhysicalViz){
+            if (samplePhysicalViz) {
                 polyLineJSONmsg.sampleType = "setup";
             }
             polyLineJSONmsg.identifier = string.Join("_", UserIDManager.PlayerId, UserIDManager.DeviceId, Time.time.ToString());
@@ -138,13 +138,13 @@ namespace NRISVTE {
                     }
                 };
             // convert fake room to kuri cords
-            foreach(List<float> fakeRoom in polyLineJSONmsg.fake_room) {
+            foreach (List<float> fakeRoom in polyLineJSONmsg.fake_room) {
                 fakeRoom[0] -= KuriT.Position.x;
                 fakeRoom[1] -= KuriT.Position.z;
                 fakeRoom[0] *= 100; // put in cm
                 fakeRoom[1] *= 100;
             }
-            polyLineJSONmsg.room = polyLineJSONmsg.fake_room;
+            polyLineJSONmsg.room = polyLineJSONmsg.fake_room; // real world polyline does not work consistently
             Debug.Log("SendPolyline: " + polyLineJSONmsg.ToString());
             connectionManager.SendToServer(Newtonsoft.Json.JsonConvert.SerializeObject(polyLineJSONmsg));
         }
