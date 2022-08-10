@@ -28,6 +28,12 @@ namespace NRISVTE {
         }
         #endregion
         #region unity
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.R)) {
+                CheckAllJSONExists();
+                Debug.Log("Checked all JSONs");
+            }
+        }
         #endregion
         #region public
         public DialogueJSON GetDialogueJSON(string objname) {
@@ -63,6 +69,40 @@ namespace NRISVTE {
             AudioClip[] files = Resources.LoadAll<AudioClip>(resourcePathToAudio);
             foreach (AudioClip file in files) {
                 _audioClips.Add(file.name.ToLower().Replace(" ", ""), file);
+            }
+        }
+
+        private void CheckAllJSONExists() {
+            // get name of all children gameobjects
+            List<string> objNames = new List<string>();
+            foreach (Transform child in transform) {
+                objNames.Add(child.name.ToLower().Replace(" ", ""));
+                Debug.Log(child.name.ToLower().Replace(" ", ""));
+            }
+            // check that all json files exist as keys in the dictionary
+            foreach (string objName in objNames) {
+                if (!DialogueJSONs.ContainsKey(objName)) {
+                    Debug.LogError("Did not find dialogue json for " + objName);
+                }
+            }
+            // check all audio clips exist as keys in the dictionary
+            foreach (string objName in objNames) {
+                // check that audio for optiona, optionb, question, responsea, and responseb exist
+                if (!AudioClips.ContainsKey(objName + "optiona")) {
+                    Debug.LogError("Did not find audio clip for " + objName + "_optiona");
+                }
+                if (!AudioClips.ContainsKey(objName + "optionb")) {
+                    Debug.LogError("Did not find audio clip for " + objName + "_optionb");
+                }
+                if (!AudioClips.ContainsKey(objName + "question")) {
+                    Debug.LogError("Did not find audio clip for " + objName + "_question");
+                }
+                if (!AudioClips.ContainsKey(objName + "responsea")) {
+                    Debug.LogError("Did not find audio clip for " + objName + "_responsea");
+                }
+                if (!AudioClips.ContainsKey(objName + "responseb")) {
+                    Debug.LogError("Did not find audio clip for " + objName + "_responseb");
+                }
             }
         }
         #endregion
