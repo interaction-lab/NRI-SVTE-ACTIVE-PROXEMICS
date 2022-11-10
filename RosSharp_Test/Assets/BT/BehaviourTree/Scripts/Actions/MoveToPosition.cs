@@ -5,7 +5,7 @@ using TheKiwiCoder;
 using NRISVTE;
 
 public class MoveToPosition : ActionNode {
-    public float speed = 5;
+    public float speed = 0.4f;
     public float stoppingDistance = 0.1f;
     public bool updateRotation = true;
     public float acceleration = 40.0f;

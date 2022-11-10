@@ -17041,7 +17041,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.04
-  m_Speed: 0.7
+  m_Speed: 0.4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 180
@@ -21239,7 +21239,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 02f7e38c8530a44628e856c4bcc39f9b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b7258b5437e024e0384431b4a01e3519, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.545
   m_Pitch: 0.03

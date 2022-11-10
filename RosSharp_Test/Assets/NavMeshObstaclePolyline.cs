@@ -20,14 +20,12 @@ namespace NRISVTE {
         #endregion
         #region unity
         private void FixedUpdate() {
-            CalcPolylineInKuriCords();
+            //CalcPolylineInKuriCords();
         }
         #endregion
         #region public
         public List<List<float>> CalcPolylineInKuriCords() {
-            if (Polyline.Empty()) {
-                PopulatePolyline();
-            }
+            PopulatePolyline();
             return Polyline;
         }
         #endregion

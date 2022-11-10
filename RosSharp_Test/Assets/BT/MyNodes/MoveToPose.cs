@@ -5,7 +5,7 @@ using TheKiwiCoder;
 
 namespace NRISVTE {
     public class MoveToPose : ActionNode {
-        public float speed = 1; // m/s
+        public float speed = 0.4f; // m/s
         public float slowDownDistance = 0.1f; // m
         public float stoppingDistance = 0.01f; // m
         public bool updateRotation = true; // if false, the agent will not rotate to face the goal
