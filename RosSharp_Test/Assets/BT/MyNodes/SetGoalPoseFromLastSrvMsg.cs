@@ -50,8 +50,6 @@ namespace NRISVTE {
                 newGoal = new Vector3(kuriCordList[0], 0, kuriCordList[1]);
                 // transform back into meters from cm
                 newGoal *= 0.01f;
-                // transform back to world cords by adding Kuri position
-                newGoal += KuriT_.Position;
                 // set on the ground
                 newGoal.y = KuriT_.GroundYCord;
                 blackboard.goalPosition = newGoal;
