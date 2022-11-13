@@ -98,7 +98,8 @@ namespace NRISVTE {
             }
             polyLineJSONmsg.robotRelToWorld = new Dictionary<string,float>{
                 {"x", KuriT.Position.x * 100f},
-                {"y", KuriT.Position.z * 100f}
+                {"y", KuriT.Position.z * 100f},
+                {"r", KuriT.Rotation.eulerAngles.y}
             };
             polyLineJSONmsg.identifier = string.Join("_", UserIDManager.PlayerId, UserIDManager.DeviceId, Time.time.ToString());
             polyLineJSONmsg.room = FakeWallRoomPolylineEstimator_.GetWallPolyLines();
