@@ -126,6 +126,7 @@ namespace NRISVTE {
             };
             ws.OnClose += (bytes) => {
                 Debug.Log("Closed with code:");
+                Debug.Log(bytes);
                 // closeCode = message;
             };
             //ws.ConnectAsync();
