@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b20bd6119bc44da0b0f6d33cefbfd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostNumber: 10.0.0.252
+  HostNumber: 192.168.1.6
 --- !u!1 &63649215
 GameObject:
   m_ObjectHideFlags: 0
@@ -21242,12 +21242,12 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: b7258b5437e024e0384431b4a01e3519, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.545
-  m_Pitch: 0.03
-  Loop: 0
+  m_Pitch: 0.19
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 67
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
